@@ -11,11 +11,11 @@ class _WebViewAppState extends State<WebViewApp> {
     // Initialize widget with settings
     qboxWidget = qbox.WebWidget(
         const qbox.Settings(
-            url: 'https://inqbox.q19.kz/wc/',
+            url: '<widget url>',
             language: qbox.Language.ru,
             call: qbox.Call(
-                domain: 'dev.test.kz',
-                topic: 'sos_test_free'
+                domain: '<domain>',
+                topic: '<topic>'
             )
         )
     );
@@ -26,7 +26,7 @@ class _WebViewAppState extends State<WebViewApp> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('AppBar'),
+          title: const Text('Your App'),
         ),
         // Add to your widget tree
         body: qboxWidget.build()
