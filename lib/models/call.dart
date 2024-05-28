@@ -14,6 +14,11 @@ class Location {
     required this.latitude,
     required this.longitude
   });
+
+  Map<String, dynamic> toJson() => {
+    'latitude': latitude,
+    'longitude': longitude,
+  };
 }
 
 class Call {
@@ -21,13 +26,21 @@ class Call {
   final String topic;
   final CallType type;
   final Location? location;
-  final Map<String, String>? dynamicAttrs;
+  final Map<String, String> dynamicAttrs;
 
   const Call({
     required this.domain,
     required this.topic,
     this.type = CallType.video,
     this.location,
-    this.dynamicAttrs
+    this.dynamicAttrs = const {}
   });
+
+  Map<String, dynamic> toJson() => {
+    'domain': domain,
+    'topic': topic,
+    'type': type.value,
+    'location': location?.toJson(),
+  }
+  ..addAll(dynamicAttrs);
 }

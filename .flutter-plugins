@@ -1,4 +1,11 @@
 # This is a generated file; do not edit or check into version control.
-webview_flutter=/Users/inmetaai/.pub-cache/hosted/pub.dev/webview_flutter-4.7.0/
-webview_flutter_android=/Users/inmetaai/.pub-cache/hosted/pub.dev/webview_flutter_android-3.16.2/
-webview_flutter_wkwebview=/Users/inmetaai/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.13.1/
+flutter_inappwebview=/Users/inmetaai/.pub-cache/hosted/pub.dev/flutter_inappwebview-6.0.0/
+flutter_inappwebview_android=/Users/inmetaai/.pub-cache/hosted/pub.dev/flutter_inappwebview_android-1.0.13/
+flutter_inappwebview_ios=/Users/inmetaai/.pub-cache/hosted/pub.dev/flutter_inappwebview_ios-1.0.13/
+flutter_inappwebview_macos=/Users/inmetaai/.pub-cache/hosted/pub.dev/flutter_inappwebview_macos-1.0.11/
+flutter_inappwebview_web=/Users/inmetaai/.pub-cache/hosted/pub.dev/flutter_inappwebview_web-1.0.8/
+permission_handler=/Users/inmetaai/.pub-cache/hosted/pub.dev/permission_handler-11.3.1/
+permission_handler_android=/Users/inmetaai/.pub-cache/hosted/pub.dev/permission_handler_android-12.0.6/
+permission_handler_apple=/Users/inmetaai/.pub-cache/hosted/pub.dev/permission_handler_apple-9.4.4/
+permission_handler_html=/Users/inmetaai/.pub-cache/hosted/pub.dev/permission_handler_html-0.1.1/
+permission_handler_windows=/Users/inmetaai/.pub-cache/hosted/pub.dev/permission_handler_windows-0.2.1/
