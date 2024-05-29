@@ -10,7 +10,7 @@ class Callbacks {
       controller?.addJavaScriptHandler(
           handlerName: 'CallState',
           callback: (args) {
-            onCallState?.call(args.firstOrNull);
+            onCallState?.call(args.isEmpty ? null : args[0]);
           }
       );
     }

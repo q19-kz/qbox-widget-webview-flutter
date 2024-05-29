@@ -1,10 +1,10 @@
 name: qbox_widget_webview
 description: "qbox webview library"
-version: 0.1.0
+version: 0.1.1
 
 environment:
-  sdk: '>=3.4.0 <4.0.0'
-  flutter: ">=1.17.0"
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
