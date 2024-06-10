@@ -26,7 +26,7 @@ class Call {
   final String topic;
   final CallType type;
   final Location? location;
-  final Map<String, String> dynamicAttrs;
+  final Map<String, dynamic> dynamicAttrs;
 
   const Call({
     required this.domain,
@@ -42,5 +42,5 @@ class Call {
     'type': type.value,
     'location': location?.toJson(),
   }
-  ..addAll(dynamicAttrs);
+    ..addAll(dynamicAttrs);
 }

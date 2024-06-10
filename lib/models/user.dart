@@ -7,7 +7,7 @@ class User {
   final String? birthdate;
   final String? iin;
   final String? phoneNumber;
-  final Map<String, String> dynamicAttrs;
+  final Map<String, dynamic> dynamicAttrs;
 
   const User({
     this.id,
