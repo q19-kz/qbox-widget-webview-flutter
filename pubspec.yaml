@@ -1,6 +1,6 @@
 name: qbox_widget_webview
 description: "qbox webview library"
-version: 0.1.1
+version: 0.2.0
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   flutter_inappwebview: ^6.0.0
   permission_handler: ^11.3.1
+  url_launcher: ^6.1.12
 
 dev_dependencies:
   flutter_test:
