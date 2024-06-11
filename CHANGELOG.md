@@ -1,3 +1,8 @@
-## 0.0.1
+## 0.1.0
 
-* TODO: Describe initial release.
+* Initial version
+
+## 0.2.0
+
+* ChromeSafariTab replaced with url_launch
+* Added onDownload callback
