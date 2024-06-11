@@ -4,7 +4,6 @@ import 'package:permission_handler/permission_handler.dart';
 
 
 Future<PermissionResponse?> handlePermission(controller, request) async {
-  print('PERMISSIONS REQUESTED');
   final resources = <PermissionResourceType>[];
   if (request.resources.contains(PermissionResourceType.CAMERA)) {
     final cameraStatus = await Permission.camera.request();

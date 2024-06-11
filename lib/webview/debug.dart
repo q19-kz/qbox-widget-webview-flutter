@@ -2,8 +2,7 @@
 import 'base.dart';
 
 
-mixin DebugMixin on BaseWebWidget{
-
+mixin DebugMixin on BaseController {
   void testCallState(){
     controller?.evaluateJavascript(source: '''
     var testState = "TEST";
