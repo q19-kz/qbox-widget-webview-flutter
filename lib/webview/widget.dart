@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'base.dart';
 import 'debug.dart';
 import 'permission.dart';
 import 'download.dart';
-
 
 class WebWidget extends BaseController with DebugMixin, DownloadMixin {
   WebWidget(super.settings, [super.callbacks]);
@@ -23,6 +21,9 @@ class WebWidget extends BaseController with DebugMixin, DownloadMixin {
       onWebViewCreated: setupController,
       onPermissionRequest: handlePermission,
       onLoadStop: onPageFinished,
+      onProgressChanged: (controller, progress) {
+        callbacks?.onProgressChanged?.call(progress);
+      },
       // shouldOverrideUrlLoading: onUrlOverride,
       onDownloadStartRequest: onDownloadStart,
     );
@@ -43,5 +44,4 @@ class WebWidget extends BaseController with DebugMixin, DownloadMixin {
     this.settings = settings;
     controller?.loadUrl(urlRequest: assembleRequest());
   }
-
 }
