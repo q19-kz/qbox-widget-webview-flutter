@@ -30,7 +30,7 @@ class WebWidget extends BaseController with DebugMixin, DownloadMixin {
   }
 
   void onPageFinished(webViewController, url) {
-    callbacks?.onPageFinished?.call(url);
+    callbacks?.onPageFinished?.call(url.toString());
 
     final json = jsonEncode(settings);
     controller?.evaluateJavascript(source: 'iosData=$json;');
