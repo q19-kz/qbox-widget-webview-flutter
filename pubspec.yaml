@@ -1,5 +1,5 @@
 name: qbox_widget_webview
-description: "qbox widget webview library"
+description: "QBox widget WebView library"
 version: 0.2.2
 
 environment:

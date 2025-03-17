@@ -1,4 +1,4 @@
-library qbox_widget_webview;
+library;
 
 export 'models/init.dart';
 export 'webview/widget.dart';
