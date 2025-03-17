@@ -3,7 +3,6 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:qbox_widget_webview/models/callbacks.dart';
 import 'package:qbox_widget_webview/models/settings.dart';
 
-
 class BaseController {
   Settings settings;
   final Callbacks? callbacks;
@@ -37,13 +36,14 @@ class BaseController {
 
   InAppWebViewSettings getWebViewSettings() {
     return InAppWebViewSettings(
-        allowsInlineMediaPlayback: true,
-        mediaPlaybackRequiresUserGesture: false,
-        allowsAirPlayForMediaPlayback: true,
-        allowsPictureInPictureMediaPlayback: true,
-        javaScriptEnabled: true,
-        javaScriptCanOpenWindowsAutomatically: true,
-        ignoresViewportScaleLimits: true,
-        cacheEnabled: false);
+      allowsInlineMediaPlayback: true,
+      mediaPlaybackRequiresUserGesture: false,
+      allowsAirPlayForMediaPlayback: true,
+      allowsPictureInPictureMediaPlayback: true,
+      javaScriptEnabled: true,
+      javaScriptCanOpenWindowsAutomatically: true,
+      ignoresViewportScaleLimits: true,
+      cacheEnabled: false,
+    );
   }
 }
