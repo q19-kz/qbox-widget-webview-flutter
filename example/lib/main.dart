@@ -46,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
           phoneNumber: '77771234567',
         ),
         call: qbox.Call(
+          type: qbox.CallType.video,  // audio = qbox.CallType.audio
           domain: 'test.kz',
           topic: 'test',
           dynamicAttrs: {'foo': 'bar'},

@@ -11,3 +11,7 @@
 
 * Upgraded dependencies
 * Added Example app
+
+## 0.3.1
+
+* Support multiple call types (text, audio, video)

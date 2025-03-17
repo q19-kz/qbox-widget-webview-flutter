@@ -10,10 +10,18 @@ class BaseController {
 
   BaseController(this.settings, [this.callbacks]);
 
-  void log(String? message) {
-    if (settings.loggingEnabled) {
-      debugPrint(message);
+  bool log(String? message) {
+    if (!settings.loggingEnabled) {
+      return false;
     }
+    if (message == null) {
+      return false;
+    }
+    if (message.isEmpty) {
+      return false;
+    }
+    debugPrint('[qbox] $message');
+    return true;
   }
 
   void setupController(webViewController) {
@@ -29,9 +37,8 @@ class BaseController {
 
   // MARK: Configuration
   URLRequest assembleRequest() {
-    return URLRequest(
-        url: WebUri(settings.url)
-          ..replace(queryParameters: settings.getUriParams()));
+    WebUri uri = WebUri(settings.getUri().toString());
+    return URLRequest(url: uri);
   }
 
   InAppWebViewSettings getWebViewSettings() {

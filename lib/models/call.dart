@@ -1,6 +1,7 @@
 enum CallType {
-  video('video'),
-  audio('audio');
+  text('text'),
+  audio('audio'),
+  video('video');
 
   const CallType(this.value);
 
@@ -26,12 +27,13 @@ class Call {
   final Location? location;
   final Map<String, dynamic> dynamicAttrs;
 
-  const Call(
-      {required this.domain,
-      required this.topic,
-      this.type = CallType.video,
-      this.location,
-      this.dynamicAttrs = const {}});
+  const Call({
+    required this.domain,
+    required this.topic,
+    this.type = CallType.video,
+    this.location,
+    this.dynamicAttrs = const {},
+  });
 
   Map<String, dynamic> toJson() => {
         'domain': domain,
