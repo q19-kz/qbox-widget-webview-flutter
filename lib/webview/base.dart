@@ -1,9 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-
-import '../models/init.dart';
+import 'package:qbox_widget_webview/models/callbacks.dart';
+import 'package:qbox_widget_webview/models/settings.dart';
 
 
 class BaseController {
@@ -22,18 +20,19 @@ class BaseController {
   void setupController(webViewController) {
     controller = webViewController;
 
-    controller?.addJavaScriptHandler(handlerName: 'CallState', callback: (args) {
-      final state = args.isEmpty ? null : args[0];
-      (callbacks?.onCallState ?? log).call(state);
-    });
+    controller?.addJavaScriptHandler(
+        handlerName: 'CallState',
+        callback: (args) {
+          final state = args.isEmpty ? null : args[0];
+          (callbacks?.onCallState ?? log).call(state);
+        });
   }
 
   // MARK: Configuration
   URLRequest assembleRequest() {
     return URLRequest(
         url: WebUri(settings.url)
-          ..replace(queryParameters: settings.getUriParams())
-    );
+          ..replace(queryParameters: settings.getUriParams()));
   }
 
   InAppWebViewSettings getWebViewSettings() {
@@ -45,8 +44,6 @@ class BaseController {
         javaScriptEnabled: true,
         javaScriptCanOpenWindowsAutomatically: true,
         ignoresViewportScaleLimits: true,
-        cacheEnabled: false
-    );
+        cacheEnabled: false);
   }
-
 }

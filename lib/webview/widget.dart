@@ -5,8 +5,8 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import 'base.dart';
 import 'debug.dart';
-import 'permission.dart';
 import 'download.dart';
+import 'permission.dart';
 
 class WebWidget extends BaseController with DebugMixin, DownloadMixin {
   WebWidget(super.settings, [super.callbacks]);

@@ -1,4 +1,3 @@
-
 class User {
   final int? id;
   final String? firstName;
@@ -9,25 +8,23 @@ class User {
   final String? phoneNumber;
   final Map<String, dynamic> dynamicAttrs;
 
-  const User({
-    this.id,
-    this.firstName,
-    this.lastName,
-    this.patronymic,
-    this.birthdate,
-    this.iin,
-    this.phoneNumber,
-    this.dynamicAttrs = const {}
-  });
+  const User(
+      {this.id,
+      this.firstName,
+      this.lastName,
+      this.patronymic,
+      this.birthdate,
+      this.iin,
+      this.phoneNumber,
+      this.dynamicAttrs = const {}});
 
   Map<String, dynamic> toJson() => {
-    'user_id': id,
-    'firstName': firstName,
-    'lastName': lastName,
-    'patronymic': patronymic,
-    'iin': iin,
-    'phoneNumber': phoneNumber,
-    'birthdate': birthdate,
-  }
-  ..addAll(dynamicAttrs);
+        'user_id': id,
+        'firstName': firstName,
+        'lastName': lastName,
+        'patronymic': patronymic,
+        'iin': iin,
+        'phoneNumber': phoneNumber,
+        'birthdate': birthdate,
+      }..addAll(dynamicAttrs);
 }

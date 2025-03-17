@@ -1,16 +1,13 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'base.dart';
 
-
 mixin DownloadMixin on BaseController {
   Future<NavigationActionPolicy> onUrlOverride(controller, action) async {
     if (!kIsWeb && defaultTargetPlatform == TargetPlatform.iOS) {
-      final shouldPerformDownload =
-          action.shouldPerformDownload ?? false;
+      final shouldPerformDownload = action.shouldPerformDownload ?? false;
       final url = action.request.url;
       if (shouldPerformDownload && url != null) {
         final handler = callbacks?.onDownloadFile ?? handleDownload;

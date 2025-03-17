@@ -1,7 +1,5 @@
-
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:permission_handler/permission_handler.dart';
-
 
 Future<PermissionResponse?> handlePermission(controller, request) async {
   final resources = <PermissionResourceType>[];
@@ -31,6 +29,5 @@ Future<PermissionResponse?> handlePermission(controller, request) async {
       resources: resources,
       action: resources.isEmpty
           ? PermissionResponseAction.DENY
-          : PermissionResponseAction.GRANT
-  );
+          : PermissionResponseAction.GRANT);
 }

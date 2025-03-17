@@ -1,12 +1,8 @@
-
 class Battery {
   final int? batteryLevelPercentage;
   final bool? batteryIsCharging;
 
-  const Battery({
-    this.batteryLevelPercentage,
-    this.batteryIsCharging
-  });
+  const Battery({this.batteryLevelPercentage, this.batteryIsCharging});
 }
 
 class Device {
@@ -17,12 +13,11 @@ class Device {
   final String? appVersion;
   final Battery? battery;
 
-  const Device({
-    this.systemName,
-    this.systemVersion,
-    this.modelName,
-    this.mobileOperator,
-    this.appVersion,
-    this.battery
-  });
+  const Device(
+      {this.systemName,
+      this.systemVersion,
+      this.modelName,
+      this.mobileOperator,
+      this.appVersion,
+      this.battery});
 }
