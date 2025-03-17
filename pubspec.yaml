@@ -1,6 +1,6 @@
 name: qbox_widget_webview
 description: "QBox widget WebView library"
-version: 0.2.2
+version: 0.3.0
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
