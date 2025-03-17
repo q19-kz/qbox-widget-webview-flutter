@@ -1,7 +1,7 @@
-
-Flutter webview wrapper for qbox web widget
+Flutter WebView wrapper for QBox web widget
 
 ## Usage
+
 ```dart
 class _WebViewAppState extends State<WebViewApp> {
   late final qbox.WebWidget qboxWidget;
