@@ -38,6 +38,13 @@ class _MyHomePageState extends State<MyHomePage> {
       const qbox.Settings(
         url: '<base url>',
         language: qbox.Language.ru,
+        user: qbox.User(
+          firstName: 'Johny',
+          lastName: 'Apple',
+          patronymic: 'Seed',
+          iin: '112233445566',
+          phoneNumber: '77771234567',
+        ),
         call: qbox.Call(
           domain: 'test.kz',
           topic: 'test',
