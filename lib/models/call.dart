@@ -25,6 +25,7 @@ class Call {
   final String topic;
   final CallType type;
   final Location? location;
+  final int? targetOperatorId;
   final Map<String, dynamic> dynamicAttrs;
 
   const Call({
@@ -32,6 +33,7 @@ class Call {
     required this.topic,
     this.type = CallType.video,
     this.location,
+    this.targetOperatorId,
     this.dynamicAttrs = const {},
   });
 
@@ -39,6 +41,7 @@ class Call {
         'domain': domain,
         'topic': topic,
         'type': type.value,
+        'target_operator_id': targetOperatorId,
         'location': location?.toJson(),
       }..addAll(dynamicAttrs);
 }

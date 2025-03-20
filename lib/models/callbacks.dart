@@ -1,13 +1,15 @@
 class Callbacks {
-  final void Function(String? state)? onCallState;
-  final void Function(String url)? onPageFinished;
+  final void Function(int progress)? onPageLoadProgress;
+  final void Function(Uri? url)? onPageLoadFinished;
+
+  final void Function(String state)? onCallState;
+
   final Future<void> Function(String url, [String? filename])? onDownloadFile;
-  final void Function(int progress)? onProgressChanged;
 
   const Callbacks({
+    this.onPageLoadProgress,
+    this.onPageLoadFinished,
     this.onCallState,
-    this.onPageFinished,
     this.onDownloadFile,
-    this.onProgressChanged,
   });
 }

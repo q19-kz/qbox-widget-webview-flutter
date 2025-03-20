@@ -20,19 +20,23 @@ class BaseController {
     if (message.isEmpty) {
       return false;
     }
-    debugPrint('[qbox] $message');
+    debugPrint('[QBox] $message');
     return true;
   }
 
   void setupController(webViewController) {
     controller = webViewController;
 
-    controller?.addJavaScriptHandler(
+    if (callbacks != null) {
+      controller?.addJavaScriptHandler(
         handlerName: 'CallState',
         callback: (args) {
-          final state = args.isEmpty ? null : args[0];
-          (callbacks?.onCallState ?? log).call(state);
-        });
+          if (args.isNotEmpty) {
+            callbacks?.onCallState?.call(args[0]);
+          }
+        },
+      );
+    }
   }
 
   // MARK: Configuration

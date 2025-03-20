@@ -22,15 +22,15 @@ class WebWidget extends BaseController with DebugMixin, DownloadMixin {
       onPermissionRequest: handlePermission,
       onLoadStop: onPageFinished,
       onProgressChanged: (controller, progress) {
-        callbacks?.onProgressChanged?.call(progress);
+        callbacks?.onPageLoadProgress?.call(progress);
       },
       // shouldOverrideUrlLoading: onUrlOverride,
       onDownloadStartRequest: onDownloadStart,
     );
   }
 
-  void onPageFinished(webViewController, url) {
-    callbacks?.onPageFinished?.call(url.toString());
+  void onPageFinished(InAppWebViewController webViewController, WebUri? url) {
+    callbacks?.onPageLoadFinished?.call(url?.uriValue);
 
     final json = jsonEncode(settings);
     controller?.evaluateJavascript(source: 'iosData=$json;');

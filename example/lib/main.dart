@@ -53,6 +53,17 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         loggingEnabled: false,
       ),
+      qbox.Callbacks(
+        onPageLoadProgress: (progress) {
+          print('onPageLoadProgress: $progress');
+        },
+        onPageLoadFinished: (url) {
+          print('onPageLoadFinished: $url');
+        },
+        onCallState: (String state) {
+          print('onCallState: $state');
+        },
+      )
     );
 
     super.initState();
