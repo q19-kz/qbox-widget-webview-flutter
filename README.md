@@ -1,5 +1,3 @@
-# <img src="https://inqbox.q19.kz/static/uploads/image/27/3b/273b4bdea7ed4569b0339c9815d48ef5.png" alt="QBox Logo" width="150" height="150"/>
-
 # QBox Widget WebView
 
 QBox Widget WebView is a lightweight Flutter package that enables seamless integration of QBox video and audio call widgets inside your Flutter apps using `InAppWebView`. It also includes automatic Picture-in-Picture (PiP) support and communication with the native Android layer via `MethodChannel`.
@@ -18,7 +16,7 @@ Add this to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  qbox_widget_webview: ^0.3.3
+  qbox_widget_webview: ^0.3.4
 ```
 
 Then run:
@@ -44,7 +42,7 @@ late final qbox.WebWidget qboxWidget;
 void initState() {
   qboxWidget = qbox.WebWidget(
     const qbox.Settings(
-      url: '<widget url>',
+      url: '<base_url>',
       language: qbox.Language.ru,
       user: qbox.User(
         firstName: 'Johny',
@@ -91,6 +89,7 @@ To support bringing the app to the foreground after PiP mode is closed manually,
 ```kotlin
 package com.example.example // your channel
 
+
 import android.content.Context
 import android.os.Bundle
 import io.flutter.embedding.android.FlutterActivity
@@ -103,7 +102,8 @@ class MainActivity : FlutterActivity() {
         super.onCreate(savedInstanceState)
 
         MethodChannel(flutterEngine!!.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
-            call, result ->
+                call,
+                result ->
             if (call.method == "moveTaskToFront") {
                 moveTaskToFront()
                 result.success(null)
@@ -114,7 +114,8 @@ class MainActivity : FlutterActivity() {
     }
 
     private fun moveTaskToFront() {
-        val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as android.app.ActivityManager
+        val activityManager =
+            getSystemService(Context.ACTIVITY_SERVICE) as android.app.ActivityManager
         activityManager.moveTaskToFront(taskId, 0)
     }
 }

@@ -1,12 +1,12 @@
 name: qbox_widget_webview
 description: "QBox widget WebView library"
-version: 0.3.3
+version: 0.3.4
 homepage: https://pub.dev/packages/qbox_widget_webview
 repository: https://github.com/q19-kz/qbox-widget-webview-flutter
 issue_tracker: https://github.com/q19-kz/qbox-widget-webview-flutter/issues
 
 environment:
-  sdk: ^3.6.0-55.0.dev
+  sdk: ">=3.0.0 <4.0.0"
   flutter: ">=3.0.0"
 
 dependencies:

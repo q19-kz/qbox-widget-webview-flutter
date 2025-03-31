@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     qboxWidget = qbox.WebWidget(
         const qbox.Settings(
-          url: 'https://inqbox.q19.kz',
+          url: '<base_url>',
           language: qbox.Language.ru,
           user: qbox.User(
             firstName: 'Johny',
