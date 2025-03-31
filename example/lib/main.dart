@@ -35,36 +35,35 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     qboxWidget = qbox.WebWidget(
-      const qbox.Settings(
-        url: '<base url>',
-        language: qbox.Language.ru,
-        user: qbox.User(
-          firstName: 'Johny',
-          lastName: 'Apple',
-          patronymic: 'Seed',
-          iin: '112233445566',
-          phoneNumber: '77771234567',
+        const qbox.Settings(
+          url: 'https://inqbox.q19.kz',
+          language: qbox.Language.ru,
+          user: qbox.User(
+            firstName: 'Johny',
+            lastName: 'Apple',
+            patronymic: 'Seed',
+            iin: '112233445566',
+            phoneNumber: '77771234567',
+          ),
+          call: qbox.Call(
+            type: qbox.CallType.video, // audio = qbox.CallType.audio
+            domain: 'test.kz',
+            topic: 'test',
+            dynamicAttrs: {'foo': 'bar'},
+          ),
+          loggingEnabled: false,
         ),
-        call: qbox.Call(
-          type: qbox.CallType.video,  // audio = qbox.CallType.audio
-          domain: 'test.kz',
-          topic: 'test',
-          dynamicAttrs: {'foo': 'bar'},
-        ),
-        loggingEnabled: false,
-      ),
-      qbox.Callbacks(
-        onPageLoadProgress: (progress) {
-          print('onPageLoadProgress: $progress');
-        },
-        onPageLoadFinished: (url) {
-          print('onPageLoadFinished: $url');
-        },
-        onCallState: (String state) {
-          print('onCallState: $state');
-        },
-      )
-    );
+        qbox.Callbacks(
+          onPageLoadProgress: (progress) {
+            print('onPageLoadProgress: $progress');
+          },
+          onPageLoadFinished: (url) {
+            print('onPageLoadFinished: $url');
+          },
+          onCallState: (String state) {
+            print('onCallState: $state');
+          },
+        ));
 
     super.initState();
   }

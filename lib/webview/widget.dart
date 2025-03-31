@@ -8,10 +8,12 @@ import 'debug.dart';
 import 'download.dart';
 import 'permission.dart';
 
-class WebWidget extends BaseController with DebugMixin, DownloadMixin {
-  WebWidget(super.settings, [super.callbacks]);
+class WebWidget extends BaseController
+    with WidgetsBindingObserver, DebugMixin, DownloadMixin {
+  WebWidget(super.settings, [super.callbacks]) {
+    WidgetsBinding.instance.addObserver(this);
+  }
 
-  // MARK: Widget
   Widget build() {
     PlatformInAppWebViewController.debugLoggingSettings.enabled = false;
 
@@ -24,7 +26,6 @@ class WebWidget extends BaseController with DebugMixin, DownloadMixin {
       onProgressChanged: (controller, progress) {
         callbacks?.onPageLoadProgress?.call(progress);
       },
-      // shouldOverrideUrlLoading: onUrlOverride,
       onDownloadStartRequest: onDownloadStart,
     );
   }
@@ -33,15 +34,33 @@ class WebWidget extends BaseController with DebugMixin, DownloadMixin {
     callbacks?.onPageLoadFinished?.call(url?.uriValue);
 
     final json = jsonEncode(settings);
-    controller?.evaluateJavascript(source: 'iosData=$json;');
-  }
-
-  void reloadPage() {
-    controller?.reload();
+    controller?.evaluateJavascript(source: 'flutterData=$json;');
   }
 
   void updateSettings(settings) {
     this.settings = settings;
     controller?.loadUrl(urlRequest: assembleRequest());
   }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.inactive) {
+      debugPrint('App is in background');
+      _onAppWentToBackground();
+    } else if (state == AppLifecycleState.resumed) {
+      debugPrint('App is back in foreground');
+      _onAppResumed();
+    }
+  }
+
+  void _onAppWentToBackground() {
+    debugPrint("App paused — video call may be interrupted.");
+  }
+
+  void _onAppResumed() {
+    debugPrint("App resumed — rechecking video state.");
+  }
+
+  void dispose() => WidgetsBinding.instance.removeObserver(this);
 }
