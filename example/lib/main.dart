@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     qboxWidget = qbox.WebWidget(
       const qbox.Settings(
-        url: 'https://inqbox.q19.kz/wc/',
+        url: '<base_url>',
         language: qbox.Language.ru,
         user: qbox.User(
           firstName: 'Johny',
@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
         call: qbox.Call(
           type: qbox.CallType.video, // audio = qbox.CallType.audio
           domain: 'test.kz',
-          topic: 'flutter_webrtc_test',
+          topic: 'test',
           dynamicAttrs: {'foo': 'bar'},
         ),
         loggingEnabled: false,
