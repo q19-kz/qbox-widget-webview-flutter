@@ -34,35 +34,36 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     qboxWidget = qbox.WebWidget(
-        const qbox.Settings(
-          url: '<base_url>',
-          language: qbox.Language.ru,
-          user: qbox.User(
-            firstName: 'Johny',
-            lastName: 'Apple',
-            patronymic: 'Seed',
-            iin: '112233445566',
-            phoneNumber: '77771234567',
-          ),
-          call: qbox.Call(
-            type: qbox.CallType.video, // audio = qbox.CallType.audio
-            domain: 'test.kz',
-            topic: 'test',
-            dynamicAttrs: {'foo': 'bar'},
-          ),
-          loggingEnabled: false,
+      const qbox.Settings(
+        url: 'https://inqbox.q19.kz/wc/',
+        language: qbox.Language.ru,
+        user: qbox.User(
+          firstName: 'Johny',
+          lastName: 'Apple',
+          patronymic: 'Seed',
+          iin: '112233445566',
+          phoneNumber: '77771234567',
         ),
-        qbox.Callbacks(
-          onPageLoadProgress: (progress) {
-            print('onPageLoadProgress: $progress');
-          },
-          onPageLoadFinished: (url) {
-            print('onPageLoadFinished: $url');
-          },
-          onCallState: (String state) {
-            print('onCallState: $state');
-          },
-        ));
+        call: qbox.Call(
+          type: qbox.CallType.video, // audio = qbox.CallType.audio
+          domain: 'test.kz',
+          topic: 'flutter_webrtc_test',
+          dynamicAttrs: {'foo': 'bar'},
+        ),
+        loggingEnabled: false,
+      ),
+      qbox.Callbacks(
+        onPageLoadProgress: (progress) {
+          print('onPageLoadProgress: $progress');
+        },
+        onPageLoadFinished: (url) {
+          print('onPageLoadFinished: $url');
+        },
+        onCallState: (String state) {
+          print('onCallState: $state');
+        },
+      ),
+    );
 
     super.initState();
   }
@@ -74,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
       //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       //   title: Text(widget.title),
       // ),
-      body: qboxWidget.build(),
+      body: qboxWidget,
     );
   }
 }

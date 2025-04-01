@@ -3,21 +3,13 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:qbox_widget_webview/models/callbacks.dart';
 import 'package:qbox_widget_webview/models/settings.dart';
 
-class BaseController {
-  Settings settings;
-  final Callbacks? callbacks;
+mixin BaseControllerMixin<T extends StatefulWidget> on State<T> {
+  late Settings settings;
+  Callbacks? callbacks;
   InAppWebViewController? controller;
 
-  BaseController(this.settings, [this.callbacks]);
-
   bool log(String? message) {
-    if (!settings.loggingEnabled) {
-      return false;
-    }
-    if (message == null) {
-      return false;
-    }
-    if (message.isEmpty) {
+    if (!settings.loggingEnabled || message == null || message.isEmpty) {
       return false;
     }
     debugPrint('[QBox] $message');
@@ -39,7 +31,6 @@ class BaseController {
     }
   }
 
-  // MARK: Configuration
   URLRequest assembleRequest() {
     WebUri uri = WebUri(settings.getUri().toString());
     return URLRequest(url: uri);

@@ -2,10 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'base.dart';
-
-mixin DownloadMixin on BaseController {
-  Future<NavigationActionPolicy> onUrlOverride(controller, action) async {
+mixin DownloadMixin {
+  Future<NavigationActionPolicy> onUrlOverride(
+    InAppWebViewController controller,
+    NavigationAction action,
+    dynamic callbacks,
+  ) async {
     if (!kIsWeb && defaultTargetPlatform == TargetPlatform.iOS) {
       final shouldPerformDownload = action.shouldPerformDownload ?? false;
       final url = action.request.url;
@@ -18,7 +20,11 @@ mixin DownloadMixin on BaseController {
     return NavigationActionPolicy.ALLOW;
   }
 
-  Future<void> onDownloadStart(controller, downloadStart) async {
+  Future<void> onDownloadStart(
+    InAppWebViewController controller,
+    DownloadStartRequest downloadStart,
+    dynamic callbacks,
+  ) async {
     final url = downloadStart.url.toString();
     final filename = downloadStart.suggestedFilename;
     final handler = callbacks?.onDownloadFile ?? handleDownload;

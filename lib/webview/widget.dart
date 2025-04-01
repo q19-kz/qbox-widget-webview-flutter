@@ -1,30 +1,63 @@
 import 'dart:convert';
-import 'dart:io';
-import 'package:floating/floating.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:simple_pip_mode/simple_pip.dart';
+
 import 'base.dart';
 import 'debug.dart';
 import 'download.dart';
 import 'permission.dart';
+import 'package:qbox_widget_webview/models/callbacks.dart';
+import 'package:qbox_widget_webview/models/settings.dart';
 
-class WebWidget extends BaseController
-    with WidgetsBindingObserver, DebugMixin, DownloadMixin {
-  final Floating floating = Floating();
-  bool _pipClosedManually = false;
+class WebWidget extends StatefulWidget {
+  final Settings settings;
+  final Callbacks? callbacks;
 
-  WebWidget(super.settings, [super.callbacks]) {
+  const WebWidget(this.settings, [this.callbacks, Key? key]) : super(key: key);
+
+  @override
+  State<WebWidget> createState() => _WebWidgetState();
+}
+
+class _WebWidgetState extends State<WebWidget>
+    with
+        WidgetsBindingObserver,
+        DownloadMixin,
+        BaseControllerMixin,
+        DebugMixin {
+  late SimplePip pip;
+
+  @override
+  void initState() {
+    super.initState();
     WidgetsBinding.instance.addObserver(this);
-    floating.pipStatusStream.listen((status) {
-      if (status == PiPStatus.disabled) {
-        debugPrint("PiP closed by user. Bringing app to foreground...");
-        _bringAppToFront();
-      }
-    });
+
+    settings = widget.settings;
+    callbacks = widget.callbacks;
+
+    pip = SimplePip(
+      onPipExited: () async {
+        debugPrint("\ud83d\udce4 PiP mode exited (X button pressed)");
+      },
+    );
+
+    _enableAutoPiP();
   }
 
-  Widget build() {
+  Future<void> _enableAutoPiP() async {
+    final isAvailable = await SimplePip.isAutoPipAvailable;
+    if (isAvailable) {
+      await pip.setAutoPipMode(
+        autoEnter: true,
+        seamlessResize: true,
+        aspectRatio: (9, 16),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     PlatformInAppWebViewController.debugLoggingSettings.enabled = false;
 
     return InAppWebView(
@@ -36,71 +69,25 @@ class WebWidget extends BaseController
       onProgressChanged: (controller, progress) {
         callbacks?.onPageLoadProgress?.call(progress);
       },
-      onDownloadStartRequest: onDownloadStart,
+      onDownloadStartRequest: (controller, downloadStart) =>
+          onDownloadStart(controller, downloadStart, callbacks),
     );
   }
 
   void onPageFinished(InAppWebViewController webViewController, WebUri? url) {
     callbacks?.onPageLoadFinished?.call(url?.uriValue);
-
     final json = jsonEncode(settings);
     controller?.evaluateJavascript(source: 'flutterData=$json;');
   }
 
-  void updateSettings(settings) {
+  void updateSettings(Settings settings) {
     this.settings = settings;
     controller?.loadUrl(urlRequest: assembleRequest());
   }
 
-  Future<void> startPiPMode() async {
-    if (_pipClosedManually) {
-      debugPrint("PiP was closed manually. Skipping auto PiP.");
-      return;
-    }
-
-    final canUsePiP = await floating.isPipAvailable;
-    final currentStatus = await floating.pipStatus;
-
-    if (canUsePiP && currentStatus != PiPStatus.enabled) {
-      debugPrint("Attempting to start PiP Mode...");
-      await floating.enable(const ImmediatePiP(
-        aspectRatio: Rational(300, 600),
-      ));
-      debugPrint("PiP Mode Started Successfully.");
-    }
-  }
-
-  Future<void> stopPiPMode() async {
-    final currentStatus = await floating.pipStatus;
-    if (currentStatus == PiPStatus.enabled) {
-      debugPrint("Disabling PiP Mode...");
-      await floating.cancelOnLeavePiP();
-      _pipClosedManually = true;
-      debugPrint("PiP Mode Disabled Completely.");
-    }
-  }
-
-  void _bringAppToFront() {
-    if (Platform.isAndroid) {
-      const platform = MethodChannel("com.pip.app/channel");
-      platform.invokeMethod("moveTaskToFront");
-    }
-  }
-
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) async {
-    if (state == AppLifecycleState.inactive ||
-        state == AppLifecycleState.paused) {
-      debugPrint("App is going to background, enabling PiP...");
-      await startPiPMode();
-    } else if (state == AppLifecycleState.resumed) {
-      debugPrint("App is Resumed, disabling PiP...");
-      await stopPiPMode();
-    }
-  }
-
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    stopPiPMode();
+    super.dispose();
   }
 }

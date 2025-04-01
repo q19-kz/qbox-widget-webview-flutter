@@ -1,7 +1,5 @@
-import 'base.dart';
-
-mixin DebugMixin on BaseController {
-  void testCallState() {
+mixin DebugMixin {
+  void testCallState(controller) {
     controller?.evaluateJavascript(source: '''
     var testState = "TEST";
     if (window.flutter_inappwebview) {
