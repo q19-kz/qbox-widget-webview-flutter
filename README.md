@@ -2,15 +2,12 @@
 
 # QBox Widget WebView
 
-QBox Widget WebView is a lightweight Flutter package that enables seamless integration of QBox video and audio call widgets inside your Flutter apps using `InAppWebView`. It also includes automatic Picture-in-Picture (PiP) support and communication with the native Android layer via `MethodChannel`.
-
 ## 🚀 Features
 
-✅ Simple integration of QBox video/audio calls in WebView  
+✅ Simple integration of QBox text/audio/video calls in WebView  
 ✅ PiP (Picture-in-Picture) mode support for Android  
 ✅ Custom user/call configuration  
 ✅ Built-in WebView callbacks (progress, call state, etc.)  
-✅ Supports communication with native Android code
 
 ## 📦 Installation
 
@@ -18,7 +15,7 @@ Add this to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  qbox_widget_webview: ^0.3.4
+  qbox_widget_webview: ^0.3.5
 ```
 
 Then run:
@@ -84,31 +81,26 @@ Widget build(BuildContext context) {
 
 ## 🧩 Native Android Integration
 
+Declare PiP support
+
+📁 `android/app/src/main/kotlin/com/example/your_app/src/main/AndroidManifest.xml`
+
+```xml
+<activity android:name="MainActivity"
+    android:supportsPictureInPicture="true"
+    android:configChanges=
+        "screenSize|smallestScreenSize|screenLayout|orientation"
+    ...
+```
+
 To support bringing the app to the foreground after PiP mode is closed manually, add the following to your Android native `MainActivity.kt` file:
 
 📁 `android/app/src/main/kotlin/com/example/your_app/MainActivity.kt`
 
 ```kotlin
-package com.example.example // your app
+package com.example.example // your package
 
 import cl.puntito.simple_pip_mode.PipCallbackHelperActivityWrapper
 
-class MainActivity : PipCallbackHelperActivityWrapper() {}
-
+class MainActivity : PipCallbackHelperActivityWrapper()
 ```
-
-## 📜 License
-
-This package is licensed under the MIT License.
-
-## 🤝 Contributing
-
-Feel free to contribute by submitting pull requests or issues.
-
-## 💬 Support
-
-If you have questions or issues, please open an issue on GitHub or contact the maintainer.
-
----
-
-🚀 **Easily integrate QBox calls into your Flutter apps with `qbox_widget_webview`!**

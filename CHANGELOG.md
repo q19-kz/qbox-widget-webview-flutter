@@ -20,7 +20,12 @@
 
 - Support callbacks
 
-## [0.3.4]
+## 0.3.4
 
 - Added Picture-in-Picture support
+- Improved WebView settings
+
+## 0.3.5
+
+- Improved Picture-in-Picture support
 - Improved WebView settings
