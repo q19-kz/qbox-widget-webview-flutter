@@ -1,7 +1,7 @@
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-Future<PermissionResponse?> handlePermission(controller, request) async {
+Future<PermissionResponse?> onPermissionRequest(controller, request) async {
   final resources = <PermissionResourceType>[];
   if (request.resources.contains(PermissionResourceType.CAMERA)) {
     final cameraStatus = await Permission.camera.request();

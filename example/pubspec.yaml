@@ -1,5 +1,5 @@
 name: qbox_widget_webview_example
-publish_to: "none"
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
@@ -11,6 +11,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   qbox_widget_webview:
     path: ../
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
