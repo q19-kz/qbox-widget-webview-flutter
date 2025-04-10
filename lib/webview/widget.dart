@@ -85,14 +85,22 @@ class _WebWidgetState extends State<WebWidget>
 
   InAppWebViewSettings getWebViewSettings() {
     return InAppWebViewSettings(
-      allowsInlineMediaPlayback: true,
+      allowBackgroundAudioPlaying: true,
       allowsAirPlayForMediaPlayback: true,
+      allowsInlineMediaPlayback: true,
       allowsPictureInPictureMediaPlayback: true,
       cacheEnabled: false,
-      javaScriptEnabled: true,
-      javaScriptCanOpenWindowsAutomatically: true,
       ignoresViewportScaleLimits: true,
+      iframeAllow: 'allow',
+      iframeAllowFullscreen: true,
+      javaScriptCanOpenWindowsAutomatically: true,
+      javaScriptEnabled: true,
       mediaPlaybackRequiresUserGesture: false,
+
+      // Zoom
+      supportZoom: false,
+      builtInZoomControls: false,
+      displayZoomControls: false,
     );
   }
 
@@ -112,6 +120,10 @@ class _WebWidgetState extends State<WebWidget>
     return InAppWebView(
       initialUrlRequest: getURL(),
       initialSettings: getWebViewSettings(),
+      onConsoleMessage:
+          (InAppWebViewController controller, ConsoleMessage consoleMessage) {
+        log("onConsoleMessage() -> $consoleMessage");
+      },
       onWebViewCreated: onWebViewCreated,
       onPermissionRequest: onPermissionRequest,
       onProgressChanged: onPageLoadProgress,
