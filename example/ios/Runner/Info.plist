@@ -26,6 +26,10 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Ваш текст для запроса разрешения камеры</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Ваш текст для запроса разрешения микрофона</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -45,9 +49,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSMicrophoneUsageDescription</key>
-    <string>Ваш текст для запроса разрешения микрофона</string>
-    <key>NSCameraUsageDescription</key>
-    <string>Ваш текст для запроса разрешения камеры</string>
 </dict>
 </plist>
