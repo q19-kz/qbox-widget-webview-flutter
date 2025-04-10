@@ -25,9 +25,9 @@ Then run:
 flutter pub get
 ```
 
-[Permissions](docs/permissions.md)
+[Permissions](assets/docs/permissions.md)
 
-[Listener](docs/listener.md)
+[Listener](assets/docs/listener.md)
 
 ## 🛠 Usage
 
