@@ -1,3 +1,4 @@
+<!--suppress CheckImageSize -->
 <img src="assets/image/logo.png" alt="19" width="150" height="150">
 
 # QBox Widget WebView
@@ -7,7 +8,7 @@
 ✅ Simple integration of QBox text/audio/video calls in WebView  
 ✅ PiP (Picture-in-Picture) mode support for Android  
 ✅ Custom user/call configuration  
-✅ Built-in WebView callbacks (progress, call state, etc.)  
+✅ Built-in WebView callbacks (progress, call state, etc.)
 
 ## 📦 Installation
 
@@ -15,7 +16,7 @@ Add this to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  qbox_widget_webview: ^0.3.5
+  qbox_widget_webview: ^0.3.7
 ```
 
 Then run:
@@ -23,6 +24,10 @@ Then run:
 ```sh
 flutter pub get
 ```
+
+[Permissions](docs/permissions.md)
+
+[Listener](docs/listener.md)
 
 ## 🛠 Usage
 
@@ -86,14 +91,15 @@ Declare PiP support
 📁 `android/app/src/main/kotlin/com/example/your_app/src/main/AndroidManifest.xml`
 
 ```xml
-<activity android:name="MainActivity"
+<activity 
+    android:name="MainActivity" 
     android:supportsPictureInPicture="true"
-    android:configChanges=
-        "screenSize|smallestScreenSize|screenLayout|orientation"
-    ...
+    android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+/>
 ```
 
-To support bringing the app to the foreground after PiP mode is closed manually, add the following to your Android native `MainActivity.kt` file:
+To support bringing the app to the foreground after PiP mode is closed manually, add the following
+to your Android native `MainActivity.kt` file:
 
 📁 `android/app/src/main/kotlin/com/example/your_app/MainActivity.kt`
 
