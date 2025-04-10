@@ -29,3 +29,7 @@
 
 - Improved Picture-in-Picture support
 - Improved WebView settings
+
+## 0.3.6
+
+- Fixed URI parse
