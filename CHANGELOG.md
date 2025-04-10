@@ -33,3 +33,7 @@
 ## 0.3.6
 
 - Fixed URI parse
+
+## 0.3.7
+
+- Fixed URI parse
