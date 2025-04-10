@@ -1,6 +1,5 @@
 import './call.dart';
 import './user.dart';
-// import './device.dart';
 
 enum Language {
   ru('ru'),
@@ -33,7 +32,13 @@ class Settings {
   });
 
   Uri getUri() {
-    return Uri.parse(url).replace(queryParameters: getUriParams());
+    var uri = Uri.parse(url);
+    var queryParameters = {};
+    if (uri.queryParameters.isNotEmpty) {
+      queryParameters.addAll(uri.queryParameters);
+    }
+    queryParameters.addAll(getUriParams());
+    return uri.replace(queryParameters: Map.from(queryParameters));
   }
 
   Map<String, String> getUriParams() {
@@ -45,11 +50,10 @@ class Settings {
       params['topic'] = topic;
     }
     if (mobileRequired == true || url.contains('/widget')) {
-      params['is_mobile'] = 'True';
+      params['is_mobile'] = 'true';
     }
     return params;
   }
 
-  Map<String, dynamic> toJson() =>
-      {'user': user?.toJson(), 'call': call?.toJson()};
+  Map<String, dynamic> toJson() => {'user': user?.toJson(), 'call': call?.toJson()};
 }
