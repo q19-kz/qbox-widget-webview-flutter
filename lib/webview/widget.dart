@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:qbox_widget_webview/models/callbacks.dart';
 import 'package:qbox_widget_webview/models/settings.dart';
 import 'package:qbox_widget_webview/webview/debug.dart';
@@ -33,6 +34,12 @@ class _WebWidgetState extends State<WebWidget>
     PlatformInAppWebViewController.debugLoggingSettings.enabled = false;
 
     _enableAutoPiP();
+    _requestPermissions();
+  }
+
+  Future<void> _requestPermissions() async {
+    await Permission.camera.request();
+    await Permission.microphone.request();
   }
 
   Future<void> _enableAutoPiP() async {

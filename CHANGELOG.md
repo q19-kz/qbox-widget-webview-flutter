@@ -37,3 +37,7 @@
 ## 0.3.7
 
 - Fixed URI parse
+
+## 0.3.8
+
+- Forced permission request
